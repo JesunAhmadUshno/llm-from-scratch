@@ -22,3 +22,7 @@ jobs:
         run: python -m unittest discover -s tests -p "test_build*.py" -v
       - name: level 2 build run
         run: python level-2-build/run_build.py
+      - name: level 3 deep tests
+        run: python -m unittest discover -s tests -p "test_deep*.py" -v
+      - name: level 3 deep run
+        run: python level-3-deep/run_deep.py

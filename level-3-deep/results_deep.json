@@ -1,0 +1,107 @@
+{
+  "python_note": "versions recorded in the level README",
+  "torch": "2.15.0+cpu",
+  "vocab_size": 68,
+  "prompt_text": "HAMLET.\nTo be,",
+  "configs": [
+    {
+      "config": {
+        "n_layer": 2,
+        "n_head": 4,
+        "n_embd": 64,
+        "block_size": 128
+      },
+      "params": 117060,
+      "prompt_tokens": 14,
+      "equivalence_tokens_checked": 32,
+      "greedy_cached_equals_naive": true,
+      "sample_cached": "HAMLET.\nTo be,HnVwe,:CO\u2019UTQ,E]VROJFEfaiC cYFpr",
+      "generation": [
+        {
+          "mode": "naive",
+          "tokens_generated": 64,
+          "repeats": 5,
+          "seconds_mean": 0.225,
+          "tokens_per_second": 284.4,
+          "output_length": 78
+        },
+        {
+          "mode": "cached",
+          "tokens_generated": 64,
+          "repeats": 5,
+          "seconds_mean": 0.0964,
+          "tokens_per_second": 664.0,
+          "output_length": 78
+        }
+      ],
+      "prefill": [
+        {
+          "path": "hand",
+          "batch_size": 4,
+          "seq_len": 128,
+          "repeats": 50,
+          "seconds_mean": 0.0105,
+          "tokens_per_second": 48952.5
+        },
+        {
+          "path": "sdpa",
+          "batch_size": 4,
+          "seq_len": 128,
+          "repeats": 50,
+          "seconds_mean": 0.0183,
+          "tokens_per_second": 27949.6
+        }
+      ]
+    },
+    {
+      "config": {
+        "n_layer": 4,
+        "n_head": 4,
+        "n_embd": 128,
+        "block_size": 128
+      },
+      "params": 827204,
+      "prompt_tokens": 14,
+      "equivalence_tokens_checked": 32,
+      "greedy_cached_equals_naive": true,
+      "sample_cached": "HAMLET.\nTo be,epZBqqsGdJK?!bTbnOfCK?[\u00e0H,l:jwlK",
+      "generation": [
+        {
+          "mode": "naive",
+          "tokens_generated": 64,
+          "repeats": 5,
+          "seconds_mean": 0.8142,
+          "tokens_per_second": 78.6,
+          "output_length": 78
+        },
+        {
+          "mode": "cached",
+          "tokens_generated": 64,
+          "repeats": 5,
+          "seconds_mean": 0.2204,
+          "tokens_per_second": 290.4,
+          "output_length": 78
+        }
+      ],
+      "prefill": [
+        {
+          "path": "hand",
+          "batch_size": 4,
+          "seq_len": 128,
+          "repeats": 50,
+          "seconds_mean": 0.0424,
+          "tokens_per_second": 12064.0
+        },
+        {
+          "path": "sdpa",
+          "batch_size": 4,
+          "seq_len": 128,
+          "repeats": 50,
+          "seconds_mean": 0.1001,
+          "tokens_per_second": 5115.5
+        }
+      ]
+    }
+  ],
+  "peak_rss_mb": 274.1
+}
