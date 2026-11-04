@@ -8,3 +8,6 @@ models/
 .env
 *.key
 secrets/
+
+checkpoint_*.pt
+checkpoint_*.pkl
