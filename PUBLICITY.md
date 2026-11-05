@@ -41,12 +41,14 @@ All six pieces are at or above the 900 ship line.
 
 - Tutorial, accuracy minus 15: in this cycle the Learn test suite
   was executed locally (8 tests, pass) and the Learn runner was
-  executed but did not finish inside a 300-second window on this
-  shared VM; the Build and Deep commands were verified by file
-  existence and by the repo CI (which installs torch and JAX and
-  runs both suites and both runners), not executed locally, because
-  torch and JAX are not installed in this VM's Python. The recorded
-  numbers in the tutorial are the level README runs of 2026-11-04.
+  executed locally to completion (exit 0) and reproduced every
+  recorded number exactly, taking about 19 minutes of wall time on
+  this shared VM against about 61 seconds in the recording
+  conditions. The Build and Deep commands were not executed locally,
+  because torch and JAX are not installed in this VM's Python; they
+  were verified by file existence and by the repo CI on this
+  fan-out commit (run completed success), which installs torch and
+  JAX and runs both suites and both runners.
 - Blog and website, research deductions: the DOSSIER past section
   is still summary level; prior art depth is the v1.1 dossier work,
   and both pieces say the novelty text stays PROPOSED.
