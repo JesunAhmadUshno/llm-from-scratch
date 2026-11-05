@@ -20,9 +20,17 @@ sys.path.insert(0, os.path.join(ROOT, "level-3-deep"))
 sys.path.insert(0, os.path.join(ROOT, "level-2-build"))
 
 from common import CharTokenizer, load_corpus  # noqa: E402
-from kv_cache import (CONFIG_A, DeepGPT, benchmark_generation,  # noqa: E402
-                      benchmark_prefill, cache_shapes, generate_cached,
-                      generate_naive, hand_attention, sdpa_attention)
+from kv_cache import (  # noqa: E402
+    CONFIG_A,
+    DeepGPT,
+    benchmark_generation,
+    benchmark_prefill,
+    cache_shapes,
+    generate_cached,
+    generate_naive,
+    hand_attention,
+    sdpa_attention,
+)
 
 TOK = CharTokenizer(load_corpus())
 PROMPT = TOK.encode("HAMLET.\nTo be,")

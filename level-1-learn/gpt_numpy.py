@@ -22,7 +22,6 @@ import math
 
 import numpy as np
 
-
 # ---------------------------------------------------------------- tokenizer
 
 class CharTokenizer:
