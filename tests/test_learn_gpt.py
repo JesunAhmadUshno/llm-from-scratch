@@ -17,8 +17,7 @@ sys.path.insert(
     os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                  "level-1-learn"),
 )
-from gpt_numpy import (Adam, CharTokenizer, TinyGPT, generate, get_batch,
-                       loss_and_grads)
+from gpt_numpy import Adam, CharTokenizer, TinyGPT, generate, get_batch, loss_and_grads
 
 CORPUS = "to be or not to be that is the question "
 
