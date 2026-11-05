@@ -43,6 +43,18 @@ Level 3, Deep result (2026-11-04, Muse VM, Python 3.12.3, torch 2.15.0+cpu, CPU 
 | Prefill, batch 4, sequence 128, mean of 50 passes | Hand-written attention 0.0105s vs SDPA 0.0183s (Config A) and 0.0424s vs 0.1001s (Config B) in the recorded run; the winner flipped between runs at Config B, so no stable prefill winner is claimed |
 | Unit tests | 9 Deep tests pass (24 total with Learn and Build), including cache growth by 1 per step, hand vs SDPA closeness inside 1e-5, and cache causality |
 
+## Fan-out
+
+Written fan-out for v1.0 (2026-11-04), in fanout/:
+
+- Blog post (draft, not posted): fanout/blog-post.md
+- Tutorial, course module P01-llm-from-scratch: fanout/tutorial.md
+- Website page copy (draft): fanout/website-page.md
+- LinkedIn post (draft, not posted): fanout/linkedin-post.md
+- Paper candidate brief (nothing submitted): fanout/paper-candidate.md
+- Release notes for v0.1, v0.5, v1.0: fanout/release-notes.md
+- Channel outcomes and per-piece publicity grades: PUBLICITY.md
+
 ## Novelty
 
 PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
