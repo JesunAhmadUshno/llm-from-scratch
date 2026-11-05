@@ -8,16 +8,13 @@ model, the optimizer, and the step count, and the training driver
 restarts from that checkpoint mid-run.
 """
 
-import os
 import time
 
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-from common import (BATCH_SIZE, CONFIG, LEARNING_RATE, RESTART_AT, SEED,
-                    TOTAL_STEPS, get_batch, mean_last, split_data)
+from common import BATCH_SIZE, CONFIG, LEARNING_RATE, RESTART_AT, SEED, TOTAL_STEPS, get_batch, mean_last, split_data
 
 
 class Block(nn.Module):
@@ -119,7 +116,6 @@ def train_torch(text, tokenizer, checkpoint_path, steps=TOTAL_STEPS,
                 restart_at=RESTART_AT, seed=SEED, log_every=50):
     torch.manual_seed(seed)
     train_data, val_data = split_data(text, tokenizer)
-    cfg = dict(CONFIG, vocab_size=tokenizer.vocab_size)
     model = TorchGPT(CONFIG, tokenizer.vocab_size)
     optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
     rng = np.random.default_rng(seed)

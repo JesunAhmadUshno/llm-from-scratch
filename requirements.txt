@@ -1,0 +1,12 @@
+# llm-from-scratch dependencies, as installed in CI (.github/workflows/ci.yml).
+# Learn level: pip install numpy
+# Build and Deep levels: torch and jax are installed in CI by special
+# commands, not from this file:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install jax
+# Torch uses the CPU wheel index above, and jax is installed unpinned
+# in CI, so neither is listed here as a plain pip requirement. Listing
+# them here would change what Dependabot and a plain pip install do.
+# This file gives Dependabot pip a manifest to watch for the one
+# dependency that is installed as a plain pip requirement.
+numpy

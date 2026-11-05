@@ -26,8 +26,8 @@ TOK = CharTokenizer(TEXT)
 class TorchTrackTests(unittest.TestCase):
     def setUp(self):
         import torch
-        from torch_gpt import TorchGPT
         from common import CONFIG
+        from torch_gpt import TorchGPT
         torch.manual_seed(0)
         self.model = TorchGPT(CONFIG, TOK.vocab_size)
 
@@ -68,8 +68,8 @@ class TorchTrackTests(unittest.TestCase):
 class JaxTrackTests(unittest.TestCase):
     def test_param_count_matches_torch_track(self):
         import jax
-        from jax_gpt import count_params, init_params
         from common import CONFIG
+        from jax_gpt import count_params, init_params
         params = init_params(TOK.vocab_size, CONFIG, seed=0)
         leaves = jax.tree_util.tree_leaves(params)
         self.assertGreater(len(leaves), 20)
@@ -77,9 +77,8 @@ class JaxTrackTests(unittest.TestCase):
 
     def test_checkpoint_roundtrip_exact(self):
         import numpy as np
-        from jax_gpt import (adam_init, init_params, load_checkpoint,
-                             save_checkpoint)
         from common import CONFIG
+        from jax_gpt import adam_init, init_params, load_checkpoint, save_checkpoint
         params = init_params(TOK.vocab_size, CONFIG, seed=1)
         state = adam_init(params)
         with tempfile.TemporaryDirectory() as tmp:
@@ -104,8 +103,8 @@ class JaxTrackTests(unittest.TestCase):
                         result["loss_step_1"])
 
     def test_generate_returns_requested_length(self):
-        from jax_gpt import generate, init_params
         from common import CONFIG
+        from jax_gpt import generate, init_params
         params = init_params(TOK.vocab_size, CONFIG, seed=2)
         prompt = TOK.encode("HAMLET.\n")
         out = generate(params, TOK, prompt, 12)
