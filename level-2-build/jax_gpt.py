@@ -21,9 +21,7 @@ import time
 import jax
 import jax.numpy as jnp
 import numpy as np
-
-from common import (BATCH_SIZE, CONFIG, LEARNING_RATE, RESTART_AT, SEED,
-                    TOTAL_STEPS, get_batch, mean_last, split_data)
+from common import BATCH_SIZE, CONFIG, LEARNING_RATE, RESTART_AT, SEED, TOTAL_STEPS, get_batch, mean_last, split_data
 
 EPS = 1e-5
 ADAM_B1, ADAM_B2, ADAM_EPS = 0.9, 0.999, 1e-8

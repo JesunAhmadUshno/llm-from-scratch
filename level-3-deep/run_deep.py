@@ -16,11 +16,16 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "level-2-build"))
 
 import torch  # noqa: E402
-
 from common import CharTokenizer, load_corpus  # noqa: E402
-from kv_cache import (CONFIG_A, CONFIG_B, DeepGPT,  # noqa: E402
-                      benchmark_generation, benchmark_prefill,
-                      generate_cached, generate_naive)
+from kv_cache import (  # noqa: E402
+    CONFIG_A,
+    CONFIG_B,
+    DeepGPT,
+    benchmark_generation,
+    benchmark_prefill,
+    generate_cached,
+    generate_naive,
+)
 
 PROMPT_TEXT = "HAMLET.\nTo be,"
 GEN_TOKENS = 64
