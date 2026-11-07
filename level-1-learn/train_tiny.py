@@ -5,8 +5,11 @@ Deterministic: every random source is seeded, so the numbers in the
 level README reproduce exactly on any machine with NumPy.
 """
 
+import json
 import os
+import platform
 import sys
+from datetime import date
 
 import numpy as np
 
@@ -62,6 +65,28 @@ def main():
     print(f"sample after training (temp 0.8, top-k 10): {sampled!r}")
     print(f"first-step loss {losses[0]:.4f}, final loss {losses[-1]:.4f}, "
           f"mean of last 20 steps {float(np.mean(losses[-20:])):.4f}")
+
+    # Machine-readable record of this run, so the numbers can be read
+    # by tools instead of copied from the README table. Stamped with
+    # its own date and machine: it is a rerun, not the README record.
+    record = {
+        "run_date": date.today().isoformat(),
+        "machine": f"{platform.node()} ({platform.machine()})",
+        "python": platform.python_version(),
+        "numpy": np.__version__,
+        "config": cfg,
+        "params": int(n_params),
+        "steps": STEPS, "batch": BATCH, "lr": LR, "seed_model": 7, "seed_batches": 42,
+        "losses": [round(float(v), 4) for v in losses],
+        "mean_last_20": round(float(np.mean(losses[-20:])), 4),
+        "sample_before_greedy": before,
+        "sample_after_greedy": after,
+        "sample_after_temp08_topk10": sampled,
+    }
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_learn.json")
+    with open(out, "w", encoding="utf-8") as handle:
+        json.dump(record, handle, indent=2)
+    print(f"wrote {out}")
 
 
 if __name__ == "__main__":

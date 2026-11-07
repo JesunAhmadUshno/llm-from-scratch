@@ -155,6 +155,7 @@ def train_torch(text, tokenizer, checkpoint_path, steps=TOTAL_STEPS,
             steps * BATCH_SIZE * CONFIG["block_size"] / elapsed, 1),
         "loss_curve": {str(s): round(losses[s - 1], 4)
                        for s in range(log_every, steps + 1, log_every)},
+        "losses": [round(v, 4) for v in losses],
     }
     prompt = tokenizer.encode("HAMLET.\n")
     sample_ids = model.generate(prompt, 40, greedy=True)

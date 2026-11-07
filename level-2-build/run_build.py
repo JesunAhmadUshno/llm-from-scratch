@@ -5,8 +5,10 @@ Requires: numpy, torch (CPU), jax (CPU). See README for install lines.
 
 import json
 import os
+import platform
 import resource
 import sys
+from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -17,7 +19,10 @@ def main():
     text = load_corpus()
     tokenizer = CharTokenizer(text)
     here = os.path.dirname(os.path.abspath(__file__))
-    results = {"corpus_chars": len(text), "vocab_size": tokenizer.vocab_size}
+    results = {"run_date": date.today().isoformat(),
+               "machine": f"{platform.node()} ({platform.machine()})",
+               "python": platform.python_version(),
+               "corpus_chars": len(text), "vocab_size": tokenizer.vocab_size}
     from torch_gpt import train_torch
     torch_result, _ = train_torch(
         text, tokenizer, os.path.join(here, "checkpoint_torch.pt"))
@@ -28,6 +33,12 @@ def main():
     results["jax"] = jax_result
     results["peak_rss_mb"] = round(
         resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024, 1)
+    # Machine-readable record with the full per-step loss arrays,
+    # stamped with this run's date and machine. The README table is
+    # the 2026-11-04 record; this file is whichever run wrote it last.
+    with open(os.path.join(here, "results_build.json"), "w",
+              encoding="utf-8") as handle:
+        json.dump(results, handle, indent=2)
     print(json.dumps(results, indent=2))
     for name in ("pytorch", "jax"):
         row = results[name]
