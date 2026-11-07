@@ -28,8 +28,9 @@ jobs:
         run: python -m unittest discover -s tests -p "test_learn*.py" -v
       - name: install build frameworks (CPU)
         run: |
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install jax
+          # Pinned to the versions the recorded 2026-11-04 runs used (level READMEs).
+          pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install jax==0.12.0.1
       - name: level 2 build tests
         run: python -m unittest discover -s tests -p "test_build*.py" -v
       - name: level 2 build run
