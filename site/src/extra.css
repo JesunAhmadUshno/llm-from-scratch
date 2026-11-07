@@ -1,0 +1,30 @@
+/* Additions for this site only; styles.css is the shared Lab OS base, copied verbatim. */
+textarea, input[type=text] { width: 100%; padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font: 13px/1.5 'JetBrains Mono', ui-monospace, monospace; resize: vertical; box-sizing: border-box; }
+textarea:focus-visible, input[type=text]:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 45%, transparent); outline-offset: 2px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; max-height: 220px; overflow-y: auto; }
+.chip { display: inline-grid; justify-items: center; min-width: 26px; padding: 3px 5px; border-radius: 7px; background: var(--surface-strong); border: 1px solid var(--border); font: 12px 'JetBrains Mono', ui-monospace, monospace; }
+.chip small { color: var(--muted); font-size: 10px; }
+.chip.oov { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+.sample { font: 12.5px/1.6 'JetBrains Mono', ui-monospace, monospace; background: var(--surface-strong); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; white-space: pre-wrap; word-break: break-word; margin: 6px 0 0; }
+.sample b { color: var(--primary); font-weight: 500; }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 6px; margin-right: 6px; vertical-align: 1px; }
+.badge.rec { background: rgba(120, 110, 95, 0.14); color: var(--muted); }
+.badge.live { background: var(--good-bg); color: var(--good); }
+.badge.model { background: var(--warn-bg); color: var(--warn); }
+.list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 13.5px; display: grid; gap: 8px; }
+.list b { color: var(--text); }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; font-size: 13px; margin: 8px 0 0; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.stack { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.grid2 > * { min-width: 0; }
+.heat-wrap { overflow-x: auto; }
+.tiles.t3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tiles.t5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.tiles.t5 .num { font-size: 34px; }
+@media (max-width: 760px) {
+  .tiles.t3, .tiles.t5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .controls { grid-template-columns: minmax(0, 1fr) !important; }
+  .field label { gap: 8px; }
+}
+.card .hint code, .card .sub code { overflow-wrap: anywhere; }
