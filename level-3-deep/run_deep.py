@@ -2,14 +2,21 @@
 (naive against KV cached), and the prefill benchmark (hand-written
 against SDPA). Writes results_deep.json beside this file and prints
 it. Usage: python level-3-deep/run_deep.py
+Variance pass: python level-3-deep/run_deep.py --variance 5 repeats the
+whole benchmark 5 times and writes results_deep_variance_t<threads>.json (mean,
+std, min, max per mode and per config) without touching
+results_deep.json, which stays the 2026-11-04 record.
 Requires: numpy, torch (CPU). See the level README for install lines.
 All numbers in the output come from this run, on this machine.
 """
 
 import json
 import os
+import platform
 import resource
+import statistics
 import sys
+from datetime import date
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -95,5 +102,62 @@ def main():
     return results
 
 
+def _spread(values):
+    return {"mean": round(statistics.mean(values), 4),
+            "std": round(statistics.stdev(values), 4) if len(values) > 1 else 0.0,
+            "min": round(min(values), 4), "max": round(max(values), 4),
+            "trials": [round(v, 4) for v in values]}
+
+
+def variance(trials):
+    """Repeat the whole benchmark `trials` times and report the spread.
+
+    The single-run means in results_deep.json moved a lot between runs
+    (cache speedup 2.10x to 5.36x, prefill winner flipped), so this
+    pass records the spread instead of one point estimate.
+    """
+    tokenizer = CharTokenizer(load_corpus())
+    runs = [[run_config(cfg, tokenizer) for cfg in (CONFIG_A, CONFIG_B)]
+            for _ in range(trials)]
+    out = {"run_date": date.today().isoformat(),
+           "machine": f"{platform.node()} ({platform.machine()})",
+           "python": platform.python_version(), "torch": torch.__version__,
+           "torch_threads": torch.get_num_threads(),
+           "trials": trials, "configs": []}
+    for ci, cfg in enumerate((CONFIG_A, CONFIG_B)):
+        rows = [run[ci] for run in runs]
+        gen = {m: [next(g for g in r["generation"] if g["mode"] == m)
+                   for r in rows] for m in ("naive", "cached")}
+        pre = {p: [next(g for g in r["prefill"] if g["path"] == p)
+                   for r in rows] for p in ("hand", "sdpa")}
+        out["configs"].append({
+            "config": cfg, "params": rows[0]["params"],
+            "greedy_cached_equals_naive_all": all(
+                r["greedy_cached_equals_naive"] for r in rows),
+            "generation_tokens_per_second": {
+                m: _spread([g["tokens_per_second"] for g in gen[m]])
+                for m in gen},
+            "cache_speedup": _spread([
+                c["tokens_per_second"] / n["tokens_per_second"]
+                for n, c in zip(gen["naive"], gen["cached"])]),
+            "prefill_seconds": {
+                p: _spread([g["seconds_mean"] for g in pre[p]]) for p in pre},
+            "prefill_hand_faster_trials": sum(
+                h["seconds_mean"] < s_["seconds_mean"]
+                for h, s_ in zip(pre["hand"], pre["sdpa"])),
+        })
+    # One file per torch thread count: thread oversubscription on a
+    # many-core CPU changes these tiny-tensor timings a lot.
+    path = os.path.join(
+        HERE, f"results_deep_variance_t{torch.get_num_threads()}.json")
+    with open(path, "w", encoding="utf-8") as handle:
+        json.dump(out, handle, indent=2)
+    print(json.dumps(out, indent=2))
+    return out
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) == 3 and sys.argv[1] == "--variance":
+        variance(int(sys.argv[2]))
+    else:
+        main()

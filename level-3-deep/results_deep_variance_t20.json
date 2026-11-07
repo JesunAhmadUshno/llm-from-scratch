@@ -1,0 +1,170 @@
+{
+  "run_date": "2026-11-07",
+  "machine": "spark-6aa3 (aarch64)",
+  "python": "3.12.3",
+  "torch": "2.12.0+cu130",
+  "torch_threads": 20,
+  "trials": 5,
+  "configs": [
+    {
+      "config": {
+        "n_layer": 2,
+        "n_head": 4,
+        "n_embd": 64,
+        "block_size": 128
+      },
+      "params": 117060,
+      "greedy_cached_equals_naive_all": true,
+      "generation_tokens_per_second": {
+        "naive": {
+          "mean": 216.48,
+          "std": 36.4359,
+          "min": 184.1,
+          "max": 256.2,
+          "trials": [
+            197.4,
+            184.1,
+            188.8,
+            255.9,
+            256.2
+          ]
+        },
+        "cached": {
+          "mean": 393.94,
+          "std": 75.2774,
+          "min": 284.3,
+          "max": 454.4,
+          "trials": [
+            454.4,
+            445.1,
+            346.2,
+            284.3,
+            439.7
+          ]
+        }
+      },
+      "cache_speedup": {
+        "mean": 1.8761,
+        "std": 0.5214,
+        "min": 1.111,
+        "max": 2.4177,
+        "trials": [
+          2.3019,
+          2.4177,
+          1.8337,
+          1.111,
+          1.7162
+        ]
+      },
+      "prefill_seconds": {
+        "hand": {
+          "mean": 0.0053,
+          "std": 0.0036,
+          "min": 0.0031,
+          "max": 0.0117,
+          "trials": [
+            0.0036,
+            0.0031,
+            0.0117,
+            0.004,
+            0.0041
+          ]
+        },
+        "sdpa": {
+          "mean": 0.0052,
+          "std": 0.0018,
+          "min": 0.0035,
+          "max": 0.0082,
+          "trials": [
+            0.0035,
+            0.0047,
+            0.0082,
+            0.0048,
+            0.0047
+          ]
+        }
+      },
+      "prefill_hand_faster_trials": 3
+    },
+    {
+      "config": {
+        "n_layer": 4,
+        "n_head": 4,
+        "n_embd": 128,
+        "block_size": 128
+      },
+      "params": 827204,
+      "greedy_cached_equals_naive_all": true,
+      "generation_tokens_per_second": {
+        "naive": {
+          "mean": 132.22,
+          "std": 30.9572,
+          "min": 83.3,
+          "max": 165.2,
+          "trials": [
+            136.7,
+            149.5,
+            126.4,
+            165.2,
+            83.3
+          ]
+        },
+        "cached": {
+          "mean": 62.56,
+          "std": 13.2103,
+          "min": 49.0,
+          "max": 78.6,
+          "trials": [
+            74.7,
+            56.4,
+            49.0,
+            78.6,
+            54.1
+          ]
+        }
+      },
+      "cache_speedup": {
+        "mean": 0.4873,
+        "std": 0.114,
+        "min": 0.3773,
+        "max": 0.6495,
+        "trials": [
+          0.5465,
+          0.3773,
+          0.3877,
+          0.4758,
+          0.6495
+        ]
+      },
+      "prefill_seconds": {
+        "hand": {
+          "mean": 0.032,
+          "std": 0.0101,
+          "min": 0.0186,
+          "max": 0.0434,
+          "trials": [
+            0.0358,
+            0.0247,
+            0.0434,
+            0.0186,
+            0.0376
+          ]
+        },
+        "sdpa": {
+          "mean": 0.017,
+          "std": 0.0061,
+          "min": 0.0122,
+          "max": 0.027,
+          "trials": [
+            0.027,
+            0.0155,
+            0.0182,
+            0.0122,
+            0.0123
+          ]
+        }
+      },
+      "prefill_hand_faster_trials": 0
+    }
+  ]
+}
