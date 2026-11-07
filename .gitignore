@@ -11,3 +11,6 @@ secrets/
 
 checkpoint_*.pt
 checkpoint_*.pkl
+site/.rubric/
+site/node_modules/
+site/dist/
