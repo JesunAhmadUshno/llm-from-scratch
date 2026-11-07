@@ -2,6 +2,8 @@
 
 A small GPT built from zero in PyTorch, with the same model rebuilt in JAX.
 
+Live dashboard: https://jesunahmadushno.github.io/llm-from-scratch/ (train the NumPy model's JavaScript port in your browser, plus every recorded result, read from this repo at build time).
+
 Status: Level 1, Learn DONE 2026-11-04. Level 2, Build DONE 2026-11-04. Level 3, Deep DONE 2026-11-04 as a compressed Deep (ROADMAP-V3-BATCH loop cycle, Sprint 1, December Compression Protocol); the rest of the v2 Deep scope is the v1.1 backlog in ROADMAP.md. Project: P01. Fleet node: BlackBox (GPU). Wave: Wave 1.
 
 ## Start here
