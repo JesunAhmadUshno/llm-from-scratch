@@ -1,6 +1,6 @@
 # DEEP-SPEC: llm-from-scratch Level 3 (compressed Deep)
 
-Scope, from SPEC.md: Deep adds a KV cache and a hand-written against
+Scope, from PROPOSAL.md: Deep adds a KV cache and a hand-written against
 fused attention speed study (the v1 core Deep). The added track asks
 for a written PyTorch vs JAX comparison on the same model (speed,
 code size, debugging pain, where XLA fusion helps), a debugging log
@@ -12,7 +12,7 @@ the single hardest capability is the KV cache with the hand-written
 against fused attention speed study, built, tested, and benchmarked
 in full in PyTorch. The comparison write-up, the debugging log, and
 the TPU note ship as written sections of the level README. The rest
-of the v2 Deep scope goes to ROADMAP.md at the repo root as the
+of the v2 Deep scope goes to REPORT.md (Future work) at the repo root as the
 v1.1 backlog: the Flax, Optax, and Orbax library layer for the JAX
 track, a JAX KV cache, larger and longer training, GPU benchmarks,
 and a real TPU run.

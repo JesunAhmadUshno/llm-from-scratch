@@ -1,10 +1,8 @@
 # PUBLICITY: llm-from-scratch (P01) v1.0 fan-out log
 
 Date: 2026-11-04. Prepared by the ROADMAP-V3-BATCH loop. The loop
-prepares drafts and never posts to social. Every piece below was
-graded on the 1,000-point publicity rubric (accuracy 300, research
-200, gap fit 200, clarity 150, reach format 150) before this log was
-written. Ship line: 900.
+prepares drafts and never posts to social. (Per-piece publicity grades
+were removed on 2026-11-08: grades are internal.)
 
 ## Channel outcomes
 
@@ -21,25 +19,12 @@ written. Ship line: 900.
 | Instagram | Held: no Instagram draft prepared in this cycle; any future caption follows the link in bio rule |
 | Threads | Held: staged only, waits for Jesun's tap (one tap per post, hash-locked). The loop never posts to Threads |
 | Video | Held: engine queue. P01 is not a flagship, so its lab video is at scripted and storyboard stage in December per the compression protocol, production January |
-| Book chapter | Named in SPEC.md as "A Model From Nothing". Held: chapter draft not yet written; fanout/blog-post.md is its source draft |
+| Book chapter | Named in PROPOSAL.md as "A Model From Nothing". Held: chapter draft not yet written; fanout/blog-post.md is its source draft |
 | Paper candidate | Draft in fanout/paper-candidate.md. No row for P01 exists in the publications pipeline tracker at 2026-11-04, and the brief says so. Held: submission is Jesun's tap, nothing submitted, no venue contacted |
 
-## Per-piece publicity grades
+## Known gaps in the fan-out
 
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| fanout/blog-post.md | 295 | 190 | 195 | 145 | 140 | 965 |
-| fanout/tutorial.md | 285 | 185 | 190 | 145 | 135 | 940 |
-| fanout/website-page.md | 295 | 185 | 190 | 145 | 140 | 955 |
-| fanout/linkedin-post.md | 290 | 180 | 185 | 140 | 145 | 940 |
-| fanout/paper-candidate.md | 290 | 195 | 190 | 140 | 130 | 945 |
-| fanout/release-notes.md | 295 | 180 | 180 | 140 | 135 | 930 |
-
-All six pieces are at or above the 900 ship line.
-
-## Unclosable deductions, named
-
-- Tutorial, accuracy minus 15: in this cycle the Learn test suite
+- Tutorial: in this cycle the Learn test suite
   was executed locally (8 tests, pass) and the Learn runner was
   executed locally to completion (exit 0) and reproduced every
   recorded number exactly, taking about 19 minutes of wall time on
@@ -49,25 +34,16 @@ All six pieces are at or above the 900 ship line.
   were verified by file existence and by the repo CI on this
   fan-out commit (run completed success), which installs torch and
   JAX and runs both suites and both runners.
-- Blog and website, research deductions: the DOSSIER past section
+- Blog and website: the DOSSIER past section (now PROPOSAL.md section 3)
   is still summary level; prior art depth is the v1.1 dossier work,
   and both pieces say the novelty text stays PROPOSED.
-- Paper candidate, accuracy minus 10 and reach minus 20: no
+- Paper candidate: no
   tracker row exists for P01 to check the brief against, and the
   candidate is a brief only; no draft paper exists yet.
-- Release notes, gap fit minus 20: the notes document releases
+- Release notes: the notes document releases
   that already exist; they add no new evidence, by design.
-- Every channel marked held above is a deduction against reach
-  that no draft can close: posting follows the standing platform
+- Every channel marked held above stays held whatever the draft: posting follows the standing platform
   rules and gates, and Threads waits for Jesun's tap.
-
-## Overall fan-out grade
-
-9,300 of 10,000. Deductions: 250 for the tutorial local execution
-gap named above, 150 for social and video channels held by the
-standing gates, 100 for the missing tracker row, 100 for the thin
-DOSSIER past section, 100 for timing noise that is inherent to the
-recorded CPU benchmarks and is stated, not hidden, in every piece.
 
 ## Actions polish pack (2026-11-05)
 
@@ -93,23 +69,7 @@ a manifest to watch.
 
 | Channel | Outcome on 2026-11-05 |
 | --- | --- |
-| GitHub Pages | Docs page added at docs/index.md in this pull request. Pages enablement and live build status are verified after merge and recorded in the batch ledger; no live claim is made in this file before that check. |
+| GitHub Pages | Docs page added at docs/index.md in this pull request (removed 2026-11-08; its content is in README.md and REPORT.md). Pages enablement and live build status are verified after merge and recorded in the batch ledger; no live claim is made in this file before that check. |
 | PyPI publishing | Held: needs a PyPI token, a new credential. Jesun's tap only. Not set up. |
 | Social channels (LinkedIn, X, Facebook, Instagram, Threads) | Held: no posts made. The loop never posts to social; Threads waits for Jesun's tap per post under the standing gates. |
 
-Publicity grade for this polish pack log piece, on the 1,000
-point rubric (accuracy 300, research 200, gap fit 200, clarity
-150, reach format 150), ship line 900:
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| PUBLICITY.md polish pack section (2026-11-05) | 295 | 180 | 195 | 145 | 100 | 915 |
-
-At or above the 900 ship line. Named deductions: research minus
-20, because the pack is a standard applied across repos and this
-section records its application rather than new research; reach
-minus 50, because the docs page is copy in this pull request with
-no live Pages claim yet, PyPI publishing is held, and no social
-channel carries this piece by the standing gates; accuracy minus
-5, gap fit minus 5, and clarity minus 5 for summary compression
-of the full pack standard, which lives in the batch files.

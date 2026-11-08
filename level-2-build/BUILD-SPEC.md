@@ -1,6 +1,6 @@
 # BUILD-SPEC: llm-from-scratch Level 2
 
-Scope, from SPEC.md: train the same small GPT in PyTorch (v1 core)
+Scope, from PROPOSAL.md: train the same small GPT in PyTorch (v1 core)
 and in JAX (added track) on the same public text set, with
 checkpointing and one restart mid-run per track, and publish
 side-by-side numbers: tokens per second, memory, final loss.

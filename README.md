@@ -1,66 +1,94 @@
 # llm-from-scratch
 
-A small GPT built from zero in PyTorch, with the same model rebuilt in JAX.
+**Question.** Can one small GPT be built three ways (NumPy with
+hand-written backpropagation, PyTorch, core JAX) so that each is proven
+correct by test, and how much does a KV cache speed up greedy generation
+of that model on a CPU?
 
-Live dashboard: https://jesunahmadushno.github.io/llm-from-scratch/ (train the NumPy model's JavaScript port in your browser, plus every recorded result, read from this repo at build time).
+**Headline.** On one CPU thread, KV-cached greedy generation ran 1.45x ± 0.01 (117,060 parameters) and 1.42x ± 0.01 (827,204 parameters) faster than naive generation (mean ± std over 5 trials), with identical output in every trial; with 20 threads the speedup was 1.88x ± 0.52 and 0.49x ± 0.11, so the earlier single-run 2.33x and 3.69x did not replicate.
 
-Status: Level 1, Learn DONE 2026-11-04. Level 2, Build DONE 2026-11-04. Level 3, Deep DONE 2026-11-04 as a compressed Deep (ROADMAP-V3-BATCH loop cycle, Sprint 1, December Compression Protocol); the rest of the v2 Deep scope is the v1.1 backlog in ROADMAP.md. Project: P01. Fleet node: BlackBox (GPU). Wave: Wave 1.
+**Field.** ML and AI research. **Job family.** Machine learning
+engineering (LLM internals and inference).
 
-## Start here
+**Verdict.** Functional, not pre-registered. Tests pass in CI on Python
+3.11 and 3.12, one command runs every test, and each level's runner has
+run end to end with its results file in this repo. No plan with
+hypotheses and pass lines was locked before the work, so the verdict is
+capped at Functional; the speed question needs a locked confirmatory
+sweep (PROPOSAL.md section 4).
 
-1. Read SPEC.md for scope and acceptance criteria.
-2. Read DOSSIER.md for the past, present, and future of this problem (v1).
-3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
-4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep.
+Live dashboard: https://jesunahmadushno.github.io/llm-from-scratch/
+(train the NumPy model's JavaScript port in your browser, plus every
+recorded result, read from this repo at build time).
 
-## Level map
+## Reproduce
 
-- Level 1, Learn: the core idea, built small and clean, with a teaching path.
-- Level 2, Build: a real working system other people can run.
-- Level 3, Deep: benchmarks, optimization, evaluation, hard cases.
+```text
+pip install numpy
+pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+pip install jax==0.12.0.1
+python -m unittest discover -s tests -p "test_*.py" -v
+```
 
-## Benchmarks
+Re-run each level (each runner rewrites its results file beside it):
 
-Level 1, Learn result (2026-11-04, Muse VM, Python 3.12.3, NumPy 1.26.4; full record in level-1-learn/README.md):
+```text
+python level-1-learn/train_tiny.py
+python level-2-build/run_build.py
+python level-3-deep/run_deep.py
+OMP_NUM_THREADS=1 python level-3-deep/run_deep.py --variance 5
+```
 
-| Test | Result |
+Read the headline numbers from the evidence:
+
+```text
+python3 -c "import json;[print(t,[(c['params'],c['cache_speedup']['mean'],c['cache_speedup']['std'],c['greedy_cached_equals_naive_all']) for c in json.load(open(f'level-3-deep/results_deep_variance_{t}.json'))['configs']]) for t in ('t1','t20')]"
+```
+
+CPU only, no GPU or paid service. The tests take about 30 seconds; the
+dashboard check (`cd site && npm ci && node src/check.mjs`) fails if a
+README table drifts from its results file.
+
+## Lifecycle
+
+- Question: DONE 2026-11-08
+- Proposal: OPEN
+- Baseline: DONE 2026-11-07
+- Build: DONE 2026-11-04
+- Evaluate: OPEN
+- Report: OPEN
+- Review: OPEN
+- Release: OPEN
+
+The question was written at migration, after the work: the 2026-11-04
+scaffold set deliverables, not a question. No proposal was locked
+(PROPOSAL.md says why). The baseline is the n-gram cross-entropy on the
+Build split. Evaluate stays open until the field profile is met:
+repeated seeds for Build, ablations, and the locked sweep. The tags
+v0.1, v0.5 and v1.0 are history from the old level ladder (CHANGELOG.md).
+
+## Layout
+
+| Path | What it holds |
 | --- | --- |
-| Tiny GPT training, 300 Adam steps (2 layers, 4 heads, 104,704 params) | Loss 3.2137 at step 1 to 0.1330 at step 300 (mean of last 20 steps 0.1304) |
-| Gradient check (analytic vs central finite differences) | Agreement below 1e-4 relative error on sampled entries of every parameter tensor (test enforced) |
-| Unit tests | 8 tests pass, including tokenizer roundtrip, causality, training loss decrease, and sampling controls |
+| PROPOSAL.md | Question, scope as committed at the scaffold, prior work, an unlocked confirmatory plan (not pre-registered) |
+| REPORT.md | Background, method, results, expectations scored with misses, threats, review findings, future work |
+| level-1-learn/ | Code: NumPy GPT with hand-written backprop, its runner; evidence: results_learn.json; method write-up: README.md |
+| level-2-build/ | Code: PyTorch and core JAX ports, shared data (corpus.txt), runner; evidence: results_build.json; README.md and BUILD-SPEC.md (design notes written with the build) |
+| level-3-deep/ | Code: KV cache and attention study, runner; evidence: results_deep.json and results_deep_variance_t1/_t20.json; README.md and DEEP-SPEC.md |
+| tests/ | Unit tests for each level and the layout test, run in CI |
+| docs/decisions/ | Records of hard-to-reverse choices |
+| site/ | The live dashboard, built from the files above; its check fails if README tables drift from the results files |
+| fanout/ | Drafts (blog, tutorial, website, LinkedIn, paper brief), release notes, and the publicity log; nothing posted |
+| CHANGELOG.md, CITATION.cff, SECURITY.md, LICENSE | Change history, citation, security policy, licence |
 
-Level 2, Build result (2026-11-04, Muse VM, Python 3.12.3, torch 2.15.0+cpu, jax 0.12.0.1; full record in level-2-build/README.md):
-
-| Test | Result |
-| --- | --- |
-| Same model in PyTorch and JAX, 20,000-char Hamlet slice (Gutenberg 1524), 300 steps, checkpoint restart at step 150 | 110,916 params each; validation loss 4.3464 to 2.0351 (PyTorch) and 4.2430 to 2.4048 (JAX) |
-| Speed, training tokens per second on CPU | PyTorch 7,716.7; JAX 11,962.7 |
-| Unit tests | 7 Build tests pass (15 total with Learn), including exact checkpoint round-trips on both tracks |
-
-Level 3, Deep result (2026-11-04, Muse VM, Python 3.12.3, torch 2.15.0+cpu, CPU only; full record in level-3-deep/README.md):
-
-| Test | Result |
-| --- | --- |
-| KV cache study, seeded untrained weights, greedy 64 tokens from a 14-token prompt, mean of 5 generations | Cached generation token-identical to naive over 32 checked tokens on both configs; 664.0 vs 284.4 tokens per second (Config A, 2 layers, 64 embedding, 117,060 params) and 290.4 vs 78.6 (Config B, 4 layers, 128 embedding, 827,204 params) |
-| Prefill, batch 4, sequence 128, mean of 50 passes | Hand-written attention 0.0105s vs SDPA 0.0183s (Config A) and 0.0424s vs 0.1001s (Config B) in the recorded run; the winner flipped between runs at Config B, so no stable prefill winner is claimed |
-| Unit tests | 9 Deep tests pass (24 total with Learn and Build), including cache growth by 1 per step, hand vs SDPA closeness inside 1e-5, and cache causality |
-
-## Fan-out
-
-Written fan-out for v1.0 (2026-11-04), in fanout/:
-
-- Blog post (draft, not posted): fanout/blog-post.md
-- Tutorial, course module P01-llm-from-scratch: fanout/tutorial.md
-- Website page copy (draft): fanout/website-page.md
-- LinkedIn post (draft, not posted): fanout/linkedin-post.md
-- Paper candidate brief (nothing submitted): fanout/paper-candidate.md
-- Release notes for v0.1, v0.5, v1.0: fanout/release-notes.md
-- Channel outcomes and per-piece publicity grades: PUBLICITY.md
-
-## Novelty
-
-PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
+There is no src/, experiments/ or results/ folder: code, raw evidence
+and results sit together in each level folder, because each runner
+writes its results file beside itself and the dashboard reads them
+there. Each results file is the raw output of one dated run (date,
+machine and versions inside); there is no separate scoring step.
 
 ## License
 
-Code: Apache-2.0 (see LICENSE). Tutorials: CC BY 4.0. Ruled in D-V3-11, 2026-11-04.
+Code: Apache-2.0 (see LICENSE). Tutorials: CC BY 4.0
+(docs/decisions/0001).

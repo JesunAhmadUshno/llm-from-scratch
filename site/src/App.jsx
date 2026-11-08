@@ -7,7 +7,7 @@ import build from '../../level-2-build/results_build.json';
 import learnMd from '../../level-1-learn/README.md?raw';
 import buildMd from '../../level-2-build/README.md?raw';
 import deepMd from '../../level-3-deep/README.md?raw';
-import roadmapMd from '../../ROADMAP.md?raw';
+import reportMd from '../../REPORT.md?raw';
 import corpus from '../../level-2-build/corpus.txt?raw';
 import trainTiny from '../../level-1-learn/train_tiny.py?raw';
 import torchSrc from '../../level-2-build/torch_gpt.py?raw';
@@ -38,7 +38,9 @@ const corpusTok = tokenizer(corpus);
 const [trainIds, valIds] = L.split(corpusTok.encode(corpus));
 const ngram = L.ngramBaselines(trainIds, valIds, corpusTok.vocabSize);
 const pyVersions = ciYml.match(/python-version: \[(.*)\]/)[1].replace(/"/g, '').split(',').map((s) => s.trim());
-const backlog = [...roadmapMd.matchAll(/^\d+\. (.+?):/gm)].map((m) => m[1]);
+// The v1.1 backlog is the numbered list under REPORT.md's "## Future work" heading (formerly ROADMAP.md).
+const futureWork = reportMd.split(/^## Future work.*$/m)[1]?.split(/^## /m)[0] ?? '';
+const backlog = [...futureWork.matchAll(/^\d+\. (.+?):/gm)].map((m) => m[1]);
 const quotedLines = deepMd.match(/torch_gpt\.py is (\d+) lines; jax_gpt\.py is (\d+) lines[\s\S]*?(\d+) shared lines/).slice(1).map(Number);
 const learnOn = L.measuredOn(learnMd), buildOn = L.measuredOn(buildMd), deepOn = L.measuredOn(deepMd);
 const learnSamples = [...learnMd.matchAll(/^- (Before training, greedy|After training, greedy|After training, temperature 0\.8 with top-k 10): "(.*)"$/gm)].map((m) => [m[1], m[2]]);
@@ -612,12 +614,12 @@ function Notes() {
 
 function Reproduce() {
   const docs = [
-    ['SPEC.md', 'Spec', 'Scope and acceptance criteria'],
+    ['README.md', 'README', 'Question, headline, verdict, reproduce'],
+    ['PROPOSAL.md', 'Proposal', 'Scope and prior work (not pre-registered)'],
     ['level-1-learn/README.md', 'Learn', 'NumPy model and gradient proof'],
     ['level-2-build/README.md', 'Build', 'PyTorch and JAX side by side'],
     ['level-3-deep/README.md', 'Deep', 'KV cache, SDPA, comparison'],
-    ['ROADMAP.md', 'Roadmap', 'v1.1 backlog'],
-    ['docs/research-review.md', 'Research review', 'Rubric grades and open gaps'],
+    ['REPORT.md', 'Report', 'Results, misses, review findings, v1.1 backlog'],
   ];
   return (
     <section id="reproduce" className="card window reveal" data-title="Terminal — reproduce">

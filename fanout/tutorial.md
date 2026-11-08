@@ -110,7 +110,7 @@ Read your results:
 - Expected combined peak memory on the recording run: 1,066.4 MB
   RSS for both tracks in one process.
 - One named gap: the JAX track is core JAX only. No Flax, no Optax,
-  no Orbax. That library layer is v1.1 backlog in ROADMAP.md.
+  no Orbax. That library layer is v1.1 backlog in REPORT.md (Future work).
 
 ## Step 3: Level 3, Deep, the KV cache study
 
@@ -118,7 +118,7 @@ Read level-3-deep/README.md and level-3-deep/DEEP-SPEC.md. This is a
 compressed Deep: the KV cache and the hand-written against fused
 attention study, plus the written PyTorch vs JAX comparison, the
 debugging log, and the TPU note. The rest of the v2 Deep scope is
-the v1.1 backlog in ROADMAP.md at the repo root.
+the v1.1 backlog in REPORT.md (Future work) at the repo root.
 
 Run the Deep tests:
 
@@ -189,4 +189,4 @@ passing.
 - Tiny models and corpora, CPU only, no GPU or TPU number anywhere.
 - Deep weights are seeded and untrained; the study measures compute.
 - The JAX track is core JAX only (no Flax, Optax, or Orbax).
-- Compressed Deep only; the rest of the Deep scope is ROADMAP.md.
+- Compressed Deep only; the rest of the Deep scope is REPORT.md (Future work).

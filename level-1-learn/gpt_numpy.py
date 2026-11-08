@@ -14,7 +14,7 @@ differences (the test suite does exactly that):
 - sampling with greedy, temperature, and top-k controls.
 
 Framework ports (the same model in PyTorch, then in JAX with Flax,
-per SPEC.md) are Build level work: they re-express this exact
+per PROPOSAL.md) are Build level work: they re-express this exact
 architecture and compare numbers. Nothing here depends on a GPU.
 """
 
