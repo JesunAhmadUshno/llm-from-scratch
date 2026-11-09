@@ -596,7 +596,7 @@ function Notes() {
             <ul className="list">
               <li><b>Toy scale.</b> 300 steps, about {fmt(build.pytorch.params / 1000)}k params, one config per level, one seed per track. No scaling sweep backs "the cache win grows with model size": it rests on two configs.</li>
               <li><b>Confounded framework comparison.</b> Per-track seeds and JIT-inclusive timing; memory is one combined-process RSS, not per track.</li>
-              <li><b>Unstable timings.</b> The recorded speedups and prefill winner did not replicate on rerun (table above).</li>
+              <li><b>Unstable timings.</b> A rerun on a different machine and torch build gave different speedups and prefill winner (table above); the recorded numbers have not been re-measured under the same conditions.</li>
               <li><b>Deep study scope.</b> Untrained weights, greedy only, batch 1, one prompt, no padding, no eviction: the cache raises past block size by design.</li>
               <li><b>Learn memorises.</b> The Learn corpus is a 6x-repeated passage; its low loss is memorisation, and it has no validation split.</li>
               <li><b>TPU note is reasoning only.</b> No TPU and no GPU run exists; no TPU or GPU number is claimed.</li>

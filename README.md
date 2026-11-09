@@ -5,7 +5,7 @@ hand-written backpropagation, PyTorch, core JAX) so that each is proven
 correct by test, and how much does a KV cache speed up greedy generation
 of that model on a CPU?
 
-**Headline.** On one CPU thread, KV-cached greedy generation ran 1.45x ± 0.01 (117,060 parameters) and 1.42x ± 0.01 (827,204 parameters) faster than naive generation (mean ± std over 5 trials), with identical output in every trial; with 20 threads the speedup was 1.88x ± 0.52 and 0.49x ± 0.11, so the earlier single-run 2.33x and 3.69x did not replicate.
+**Headline.** On one CPU thread, KV-cached greedy generation ran 1.45x ± 0.01 (117,060 parameters) and 1.42x ± 0.01 (827,204 parameters) faster than naive generation (mean ± std over 5 trials, spark-6aa3 aarch64, torch 2.12.0+cu130 on CPU), with identical output in every trial; with 20 threads the speedup was 1.88x ± 0.52 and 0.49x ± 0.11. The earlier single-run 2.33x and 3.69x came from a different machine and torch build (Muse VM, torch 2.15.0+cpu) and have not been re-measured under the same conditions.
 
 **Field.** ML and AI research. **Job family.** Machine learning
 engineering (LLM internals and inference).

@@ -107,7 +107,10 @@ over 5 trials; greedy cached output equalled naive in every trial.
 | 1 | 1.45x ± 0.01 | 1.42x ± 0.01 | 5 of 5 trials, both configs |
 | 20 | 1.88x ± 0.52 | 0.49x ± 0.11 | 3 of 5 (A), 0 of 5 (B) |
 
-The recorded 2.33x and 3.69x did not replicate. At these tensor sizes
+These differ from the recorded 2.33x and 3.69x, but those came from a
+different machine and torch build (Muse VM, torch 2.15.0+cpu) and have not
+been re-measured there, so this is not a same-machine replication test.
+At these tensor sizes
 the wall-clock ratio is dominated by per-call and threading overhead,
 not by the attention work the cache removes; at 20 threads on Config B
 caching was slower than naive.
