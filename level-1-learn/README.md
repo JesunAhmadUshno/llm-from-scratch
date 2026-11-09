@@ -87,7 +87,7 @@ and its gradients are proven), not language ability.
 - The corpus is a small repeated teaching passage, not the real text
   set the SPEC v1 core names. A real corpus and a held-out loss are
   Build level work.
-- The model is NumPy, not PyTorch or JAX. SPEC.md defines the same
+- The model is NumPy, not PyTorch or JAX. PROPOSAL.md defines the same
   model in PyTorch (v1 core) and rebuilt in JAX with Flax (added
   track). Those ports, trained on the same text set with side-by-side
   numbers, are Build level work; this level proves the architecture
@@ -101,6 +101,6 @@ and its gradients are proven), not language ability.
 ## Next
 
 Level 2, Build: port this exact architecture to PyTorch and to JAX
-with Flax per SPEC.md, train both on the same public text set, and
+with Flax per PROPOSAL.md, train both on the same public text set, and
 publish side-by-side numbers (tokens per second, memory, final loss)
 with an Orbax checkpoint restart on the JAX track.

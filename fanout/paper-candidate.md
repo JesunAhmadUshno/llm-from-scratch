@@ -8,9 +8,9 @@ Project: P01 llm-from-scratch
 Status: CANDIDATE brief, 2026-11-04
 Submission note: submission is Jesun's tap. Nothing is submitted by
 this brief, and no venue has been contacted.
-Paper angle (per SPEC.md): the from-scratch build and the KV cache
+Paper angle (per PROPOSAL.md): the from-scratch build and the KV cache
 study, with the PyTorch vs JAX same-model study as the comparison
-core. Book chapter named in SPEC.md: "A Model From Nothing".
+core. Book chapter named in PROPOSAL.md: "A Model From Nothing".
 
 ## Working title
 
@@ -99,7 +99,7 @@ the repo.
 
 ## Venue class note
 
-Per SPEC.md the angle is a citable comparison note. Venue class:
+Per PROPOSAL.md the angle is a citable comparison note. Venue class:
 workshop or systems and education venue, one venue at a time, per
 the tracker stage rules. No venue is named as submitted, accepted,
 or contacted in this brief. Fees, if any, arise only after
@@ -116,7 +116,7 @@ acceptance and remain Jesun's call under the free-only rule.
   named library layer is v1.1 backlog.
 - Compressed Deep only. The v1.1 backlog (JAX KV cache, GPU
   benchmarks, profiler trace, TPU run) is future work, named in
-  ROADMAP.md in the repo.
+  REPORT.md (Future work) in the repo.
 - The TPU note in the Deep README is reasoning only and carries no
   measured claim into the paper.
 

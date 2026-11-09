@@ -84,6 +84,10 @@ assert.ok(losses.at(-1) < losses[0] * 0.75, `loss ${losses[0]} -> ${losses.at(-1
 const [xt, yt] = G.getBatch(data, 16, 2, G.rng(5));
 assert.ok(G.gradCheck(m2, xt, yt).maxRel < 1e-4, 'grad check after training');
 
+// 10. The v1.1 backlog the page lists is REPORT.md's "## Future work" numbered list (formerly ROADMAP.md).
+const future = read('REPORT.md').split(/^## Future work.*$/m)[1]?.split(/^## /m)[0] ?? '';
+assert.equal([...future.matchAll(/^\d+\. (.+?):/gm)].length, 8, 'REPORT.md Future work list');
+
 // 9. N-gram baselines are finite and ordered uniform > unigram > bigram.
 const [tr, va] = L.split(tok.encode(corpus));
 const ng = L.ngramBaselines(tr, va, tok.vocabSize);

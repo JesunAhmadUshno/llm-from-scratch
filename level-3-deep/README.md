@@ -4,7 +4,7 @@ Status: DONE 2026-11-04 (ROADMAP-V3-BATCH, Sprint 1), as a COMPRESSED
 Deep under the December Compression Protocol. Compressed means: the
 single hardest capability in the SPEC Deep scope was built, tested,
 and benchmarked in full, and the rest of the v2 Deep scope is named
-as the v1.1 backlog in ROADMAP.md at the repo root. It is not the
+as the v1.1 backlog in REPORT.md (Future work) at the repo root. It is not the
 full v2 Deep scope, and this README does not claim it is.
 Spec for this level: DEEP-SPEC.md in this folder.
 
@@ -243,7 +243,7 @@ growth both tracks use now; precision is set to bfloat16 by
 policy rather than per tensor; and debugging moves further from
 the eager style, because the compiled graph runs on the device
 as a whole. A real TPU run, with numbers, is v1.1 backlog in
-ROADMAP.md and needs a free TPU route that does not exist in
+REPORT.md (Future work) and needs a free TPU route that does not exist in
 this environment today.
 
 ## Failure modes
@@ -286,7 +286,7 @@ this environment today.
 ## Limits, stated plainly
 
 - Compressed Deep, by the protocol named above. The rest of the
-  v2 Deep scope is ROADMAP.md: the Flax, Optax, and Orbax library
+  v2 Deep scope is REPORT.md (Future work): the Flax, Optax, and Orbax library
   layer, a JAX KV cache, larger and longer training, GPU
   benchmarks, a profiler trace for the XLA fusion claim, and a
   real TPU run.

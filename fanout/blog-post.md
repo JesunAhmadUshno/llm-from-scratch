@@ -21,7 +21,7 @@ Repository: https://github.com/JesunAhmadUshno/llm-from-scratch
 ## Past, present, future (the dossier, condensed)
 
 Past: nanoGPT-style teaching builds and framework tutorials already
-exist. The prior art is recorded in NOVELTY.md in the repo, and the
+exist. The prior art is recorded in PROPOSAL.md in the repo, and the
 novelty text there stays marked PROPOSED. This post makes no novelty
 claim beyond the measured work below.
 
@@ -32,7 +32,7 @@ the single hardest Deep capability in the SPEC, the KV cache plus the
 hand-written against fused attention speed study, plus the written
 PyTorch vs JAX comparison, the debugging log, and the TPU note.
 
-Future: the rest of the v2 Deep scope is named in ROADMAP.md in the
+Future: the rest of the v2 Deep scope is named in REPORT.md (Future work) in the
 repo as the v1.1 backlog. It includes the Flax, Optax, and Orbax
 library layer, a JAX KV cache, larger and longer training, GPU
 benchmarks, a profiler trace for the XLA fusion claim, and a real TPU
@@ -117,7 +117,7 @@ no stable prefill winner is claimed. Tests: 9 Deep tests, 24 total.
   seeded untrained weights. No result here is a language quality
   result.
 - The JAX track uses core JAX only: no Flax model definition, no
-  Optax optimizer, no Orbax checkpoint. SPEC.md names those
+  Optax optimizer, no Orbax checkpoint. PROPOSAL.md names those
   libraries. The mechanisms are real and tested; the named library
   layer is the v1.1 backlog.
 - One configuration per level, one corpus per level, runs on the
@@ -129,7 +129,7 @@ no stable prefill winner is claimed. Tests: 9 Deep tests, 24 total.
   configs and the prefill winner flipped. The recorded tables are one
   run's measurement with method, not constants of nature.
 - Compressed Deep is not the full v2 Deep scope. The remainder is the
-  named v1.1 backlog in ROADMAP.md.
+  named v1.1 backlog in REPORT.md (Future work).
 - Two level READMEs carry stale status lines from their own ship
   day (Learn says Build and Deep are not started; Build says Deep is
   not started). The root README and the later level READMEs supersede
@@ -143,5 +143,5 @@ no stable prefill winner is claimed. Tests: 9 Deep tests, 24 total.
 - Releases: v0.1 (Learn), v0.5 (Build), v1.0 (Learn, Build,
   compressed Deep) on the GitHub repo linked above.
 - Book chapter: "A Model From Nothing" is the named chapter in
-  SPEC.md; the draft status is logged in PUBLICITY.md in the repo.
+  PROPOSAL.md; the draft status is logged in fanout/PUBLICITY.md in the repo.
 - License: code Apache-2.0, tutorials CC BY 4.0.

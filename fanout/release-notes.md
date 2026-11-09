@@ -71,4 +71,4 @@ Title on GitHub: Deep v1.0: KV cache and attention study
   near-tie argmax flips, stale cache, no padding, timing noise.
 - 9 Deep tests (24 total with Learn and Build).
 - Compressed Deep under the December Compression Protocol: the
-  rest of the v2 Deep scope is the v1.1 backlog in ROADMAP.md.
+  rest of the v2 Deep scope is the v1.1 backlog in REPORT.md (Future work).

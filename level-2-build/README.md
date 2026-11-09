@@ -8,7 +8,7 @@ Spec for this level: BUILD-SPEC.md in this folder.
 
 ## What was built
 
-The Level 1 model, ported to both frameworks SPEC.md names, trained
+The Level 1 model, ported to both frameworks PROPOSAL.md names, trained
 on the same real text set, with the same training recipe:
 
 1. PyTorch track (torch_gpt.py): the TinyGPT architecture as an
@@ -91,7 +91,7 @@ machine.
 ## Limits, stated plainly
 
 - The JAX track uses core JAX only: no Flax model definition, no
-  Optax optimizer, no Orbax checkpoint. SPEC.md names those
+  Optax optimizer, no Orbax checkpoint. PROPOSAL.md names those
   libraries. The mechanisms (parameter tree, jit step, Adam,
   checkpoint restart) are real and tested; the named library layer
   is the gap, and it is a named deduction below and a Deep and
@@ -109,6 +109,6 @@ machine.
 ## Next
 
 Level 3, Deep: the KV cache and the hand-written against fused
-attention speed study from SPEC.md, plus the written PyTorch vs
+attention speed study from PROPOSAL.md, plus the written PyTorch vs
 JAX comparison (speed, code size, debugging pain, where XLA fusion
 helps) and the TPU note.

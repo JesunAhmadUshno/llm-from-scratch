@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "llm-from-scratch: one small GPT built in NumPy, PyTorch and JAX, with a KV cache study on CPU"
+authors:
+  - family-names: Ushno
+    given-names: Jesun Ahmad
+repository-code: "https://github.com/JesunAhmadUshno/llm-from-scratch"
+license: Apache-2.0
+version: "1.0"
+date-released: 2026-11-04

@@ -44,7 +44,7 @@ quality at scale.
 - Deep used seeded untrained weights; it measures compute, not
   language quality.
 - Compressed Deep is not the full v2 Deep scope. The remainder is
-  the v1.1 backlog in the repo ROADMAP.md.
+  the v1.1 backlog in the repo REPORT.md (Future work).
 
 ## Links
 

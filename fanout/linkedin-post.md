@@ -39,7 +39,7 @@ The honest limits, in the post and not in a footnote: tiny models,
 tiny corpora, CPU only, no GPU or TPU number claimed, and the JAX
 track is core JAX only, with Flax, Optax, and Orbax named as v1.1
 backlog, not done. The rest of the Deep scope is in the repo
-ROADMAP.md.
+REPORT.md (Future work).
 
 If you build with LLM frameworks: when did you last check what the
 framework is doing under your model?
