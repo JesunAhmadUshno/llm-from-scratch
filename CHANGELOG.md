@@ -10,6 +10,12 @@ release notes for those tags: fanout/release-notes.md.
 ## [Unreleased]
 
 ### Changed
+- 2026-11-08: Independent review. The README headline, REPORT variance
+  section and dashboard no longer say the earlier 2.33x and 3.69x "did not
+  replicate": the five-trial rerun used a different machine and torch build
+  (spark-6aa3, torch 2.12.0+cu130 against the Muse VM's 2.15.0+cpu), so it
+  is not a same-machine repeat. The claim is lowered to "not re-measured
+  under the same conditions".
 - 2026-11-08: Adopted the portfolio standard v2. README opens with the
   question, headline, field, job family and verdict (Functional, not
   pre-registered). SPEC.md, NOVELTY.md and DOSSIER.md (Past, Future)
