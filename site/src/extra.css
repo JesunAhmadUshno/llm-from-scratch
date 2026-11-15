@@ -1,14 +1,22 @@
+/* Hallmark · v2.0.0 · Batch 2 rollout 2026-11-15 · Archetype A study dashboard: tokens, labels, focus and motion standardised; data, copy and structure preserved */
+/* Hallmark · pre-emit critique: P3 H4 E4 S4 R5 V3 · weakest: V, one of the Lab OS dashboards on a shared house pattern; this pass adds the money links and the chat widget and brings the CSS to the floor only */
+:root {
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --lit-rgba-120-110-95-0-14: rgba(120, 110, 95, 0.14);
+}
 /* Additions for this site only; styles.css is the shared Lab OS base, copied verbatim. */
-textarea, input[type=text] { width: 100%; padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font: 13px/1.5 'JetBrains Mono', ui-monospace, monospace; resize: vertical; box-sizing: border-box; }
+textarea, input[type=text] { width: 100%; padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface-strong); color: var(--text); font:13px/1.5  var(--font-mono); resize: vertical; box-sizing: border-box; }
 textarea:focus-visible, input[type=text]:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 45%, transparent); outline-offset: 2px; }
 .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; max-height: 220px; overflow-y: auto; }
-.chip { display: inline-grid; justify-items: center; min-width: 26px; padding: 3px 5px; border-radius: 7px; background: var(--surface-strong); border: 1px solid var(--border); font: 12px 'JetBrains Mono', ui-monospace, monospace; }
+.chip { display: inline-grid; justify-items: center; min-width: 26px; padding: 3px 5px; border-radius: 7px; background: var(--surface-strong); border: 1px solid var(--border); font:12px  var(--font-mono); }
 .chip small { color: var(--muted); font-size: 10px; }
 .chip.oov { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
-.sample { font: 12.5px/1.6 'JetBrains Mono', ui-monospace, monospace; background: var(--surface-strong); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; white-space: pre-wrap; word-break: break-word; margin: 6px 0 0; }
+.sample { font:12.5px/1.6  var(--font-mono); background: var(--surface-strong); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; white-space: pre-wrap; word-break: break-word; margin: 6px 0 0; }
 .sample b { color: var(--primary); font-weight: 500; }
-.badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 6px; margin-right: 6px; vertical-align: 1px; }
-.badge.rec { background: rgba(120, 110, 95, 0.14); color: var(--muted); }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: none; letter-spacing: 0; padding: 2px 8px; border-radius: 6px; margin-right: 6px; vertical-align: 1px; }
+.badge.rec { background: var(--lit-rgba-120-110-95-0-14); color: var(--muted); }
 .badge.live { background: var(--good-bg); color: var(--good); }
 .badge.model { background: var(--warn-bg); color: var(--warn); }
 .list { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 13.5px; display: grid; gap: 8px; }
@@ -28,3 +36,12 @@ textarea:focus-visible, input[type=text]:focus-visible { outline: 3px solid colo
   .field label { gap: 8px; }
 }
 .card .hint code, .card .sub code { overflow-wrap: anywhere; }
+
+/* Batch 2 rollout additions: support links and skip link */
+.support { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+.support a { color: inherit; font-weight: 600; padding: 8px 4px; }
+.support a:hover { opacity: 0.75; }
+.skip { position: absolute; left: 16px; top: -48px; z-index: 100; background: var(--surface-strong); color: var(--text); padding: 8px 16px; border-radius: var(--radius-md); transition: transform 0.18s ease, opacity 0.18s ease; opacity: 0; }
+.skip:focus-visible { top: 36px; opacity: 1; outline: 3px solid var(--primary); outline-offset: 2px; }
+.btn:active { transform: translateY(1px); }
+.dock a:active { transform: translateY(-2px); }
