@@ -180,7 +180,7 @@ export default function App() {
   useReveal();
   const [model, send] = useModel();
   return (
-    <div className="wrap">
+    <div className="wrap"><a className="skip" href="#top">Skip to content</a>
       <MenuBar />
       <div className="glow" aria-hidden="true" />
       <Hero />
@@ -194,7 +194,7 @@ export default function App() {
       <Dock />
       <footer>
         Every number on this page is read from the repo at build time (<code>level-*/results_*.json</code>, the level READMEs, and the source files) or computed live in your browser. Recorded runs are labelled recorded. Code: see <a href={blob('LICENSE')} style={{ color: 'inherit' }}>LICENSE</a>.
-      </footer>
+      <nav className="support" aria-label="Support this work"><a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a><a href="https://github.com/sponsors/JesunAhmadUshno">Donate</a><a href="https://buymeacoffee.com/jesun">Buy Me a Coffee</a><a href="https://calendly.com/jesunahmadushno/30min">Work with me</a></nav></footer>
     </div>
   );
 }
@@ -243,7 +243,7 @@ function Learn({ model, send }) {
   const isLearn = cfg.layers === 2 && cfg.embd === 64;
   const last = model.losses.at(-1);
   return (
-    <section id="learn" className="card window reveal" data-title="gpt_numpy.py — hand-written backprop">
+    <section id="learn" className="card window reveal" data-title="gpt_numpy.py - hand-written backprop">
       <div className="head">
         <div>
           <p className="eyebrow">Level 1 · Learn</p>
@@ -310,14 +310,14 @@ function Learn({ model, send }) {
 }
 
 function Tokenizer() {
-  const [text, setText] = useState('HAMLET.\nTo be, or not to be — that’s it.');
+  const [text, setText] = useState('HAMLET.\nTo be, or not to be - that’s it.');
   const chars = Array.from(text);
   const kept = chars.filter((c) => corpusTok.has(c));
   const ids = corpusTok.encode(kept.join(''));
   const oov = [...new Set(chars.filter((c) => !corpusTok.has(c)))];
   const show = (c) => (c === '\n' ? '↵' : c === ' ' ? '␠' : c);
   return (
-    <section id="tokens" className="card window reveal" data-title="corpus.txt — CharTokenizer">
+    <section id="tokens" className="card window reveal" data-title="corpus.txt - CharTokenizer">
       <p className="eyebrow">Live tokenizer</p>
       <h2>{corpusTok.vocabSize} characters are the whole vocabulary.</h2>
       <p className="sub">
@@ -370,7 +370,7 @@ function Architecture({ model, send }) {
   const cell = T ? Math.min(22, 440 / T) : 20, off = 18;
   const show = (c) => (c === ' ' ? '␠' : c);
   return (
-    <section id="arch" className="card window reveal" data-title="TinyGPT config — parameters · attention">
+    <section id="arch" className="card window reveal" data-title="TinyGPT config - parameters · attention">
       <p className="eyebrow">Architecture</p>
       <h2>One formula reproduces all four recorded parameter counts.</h2>
       <p className="sub">
@@ -430,7 +430,7 @@ function Build() {
   const val = { torch: L.num(bm['Validation loss, after training'].torch), jax: L.num(bm['Validation loss, after training'].jax) };
   const tps = { torch: L.num(bm['Tokens per second'].torch), jax: L.num(bm['Tokens per second'].jax) };
   return (
-    <section id="build" className="card window reveal" data-title="torch_gpt.py vs jax_gpt.py — same model, same data">
+    <section id="build" className="card window reveal" data-title="torch_gpt.py vs jax_gpt.py - same model, same data">
       <div className="head">
         <div>
           <p className="eyebrow">Level 2 · Build</p>
@@ -491,7 +491,7 @@ function Deep() {
   const ops = L.attentionOps(c.prompt_tokens, gen);
   const v = [var1, var20];
   return (
-    <section id="deep" className="card window reveal" data-title="kv_cache.py — results_deep.json">
+    <section id="deep" className="card window reveal" data-title="kv_cache.py - results_deep.json">
       <div className="head">
         <div>
           <p className="eyebrow">Level 3 · Deep</p>
@@ -570,7 +570,7 @@ function Notes() {
   const counts = [['torch_gpt.py', L.wcLines(torchSrc), quotedLines[0]], ['jax_gpt.py', L.wcLines(jaxSrc), quotedLines[1]], ['common.py (shared)', L.wcLines(commonSrc), quotedLines[2]]];
   const max = Math.max(...counts.map((r) => r[1]));
   return (
-    <section id="notes" className="card window reveal" data-title="NOTES.md — comparison, failure modes, limits">
+    <section id="notes" className="card window reveal" data-title="NOTES.md - comparison, failure modes, limits">
       <p className="eyebrow">Comparison and limits</p>
       <h2>What the PyTorch and JAX ports taught, and what is not done.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -622,7 +622,7 @@ function Reproduce() {
     ['REPORT.md', 'Report', 'Results, misses, review findings, v1.1 backlog'],
   ];
   return (
-    <section id="reproduce" className="card window reveal" data-title="Terminal — reproduce">
+    <section id="reproduce" className="card window reveal" data-title="Terminal - reproduce">
       <p className="eyebrow">Reproduce it</p>
       <h2>Every recorded number comes from a script you can rerun on a CPU.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
